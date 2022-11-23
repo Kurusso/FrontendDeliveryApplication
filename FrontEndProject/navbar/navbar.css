@@ -1,0 +1,17 @@
+.nav-item {
+    text-align: center;
+}
+
+.nav-item a:hover {
+    background-color: lightgray;
+}
+
+nav {
+    background-color: white;
+    border-color: lightgray;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+}
+ .right{
+    margin:10px;
+}

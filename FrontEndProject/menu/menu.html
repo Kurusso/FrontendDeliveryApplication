@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/WebFront-Hits-frontend-project-2/FrontEndProject/navbar/navbar.css">
+    <link rel="stylesheet" type="text/css" href="/WebFront-Hits-frontend-project-2/FrontEndProject/footer/footer.css">
+    <link rel="stylesheet" type="text/css" href="/WebFront-Hits-frontend-project-2/FrontEndProject/registration/registration.css">
+    <link rel="stylesheet" type="text/css" href="menu.css">
+    <script type="text/javascript" src="menu.js"></script>
+
+    <script>
+        $(function(){
+            $("#header").load("/WebFront-Hits-frontend-project-2/FrontEndProject/navbar/navbar.html");
+        });
+    </script>
+
+    <script>
+        $(function(){
+            $("#footer").load("/WebFront-Hits-frontend-project-2/FrontEndProject/footer/footer.html");
+        });
+    </script>
+</head>
+<body>
+<div id="header"></div>
+<div class="square mx-auto">
+
+    <nav class="second-navbar navbar navbar-expand-lg navbar-custom">
+        <div class="container-fluid">
+            <button class="navbar-toggler navbar-toggler-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent2" aria-controls="navbarSupportedContent2" aria-expanded="false" aria-label="Переключатель навигации">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent2">
+
+                    <div class=" nav-item-2 choose-bar marg">
+                        <select class="selector data-field dish" multiple="multiple" size="3"  >
+                            <option value="WOK">WOK</option>
+                            <option value="Soup">Супы</option>
+                            <option value="Pizza">Пицца</option>
+                            <option value="Dessert">Дессерт</option>
+                            <option value="Drink">Напиток</option>
+                        </select>
+                    </div>
+                    <div class=" nav-item-2 choose-bar marg">
+                        <select class="selector data-field" type="text" name="name" required="required">
+                            <option value="NameAsc">А-Я</option>
+                            <option value="NameDesc">Я-А</option>
+                            <option value="PriceAsc">Цена &uarr</option>
+                            <option value="PriceDesc">Цена &darr</option>
+                            <option value="RatingAsc">Рейтинг &uarr</option>
+                            <option value="RatingDesc">Рейтинг &darr</option>
+                        </select>
+                    </div>
+
+                    <div class=" nav-item-2 marg">
+                        <label class="switch data-field">
+                            <input class="clicker" type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                    <div class="nav-item-2">
+                        <div class="dish-text ">Показать только вегетрианские</div>
+                    </div>
+                    <div class="flexspace"></div>
+                <div class="nav-item-2 my-sm-0">
+                    <button class="filter-button button" href="/WebFront-Hits-frontend-project-2/FrontEndProject/registration/registration.html">Применить</button>
+                </div>
+            </div>
+
+        </div>
+    </nav>
+
+<div class="dish-box" style="display:" >
+    <img src="https://bipbap.ru/wp-content/uploads/2017/04/0_7c779_5df17311_orig.jpg" class="image-size">
+    <div class="padding-box">
+        <h5 class="dish-name">Категория блюда - </h5>
+        <div class="category-name">fwfw</div>
+        <div class="star-rating">text</div>
+        <div class="dish-text">text</div>
+        <div class="flexspace"></div>
+        <div class="dish-footer row ">
+            <div class="dish-cost col-8"></div>
+            <button class="add-button button col-4"> В корзину</button>
+        </div>
+    </div>
+</div>
+
+</div>
+<div class="flexspace"></div>
+<div id="footer"></div>
+</body>
+</html>

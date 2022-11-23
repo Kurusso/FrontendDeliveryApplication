@@ -1,6 +1,6 @@
-function register() {
+async function login() {
     let data = document.querySelectorAll(".data-field");
-    fetch("https://food-delivery.kreosoft.ru/api/account/login", {
+    await fetch("https://food-delivery.kreosoft.ru/api/account/login", {
         method: 'POST',
         body: JSON.stringify(
             {
@@ -23,7 +23,7 @@ function register() {
 document.addEventListener("DOMContentLoaded", () =>{
     console.log("teat")
     document.querySelector(".login-button").addEventListener("click", ()=>{
-        register();
+         login()
     });
 
 });

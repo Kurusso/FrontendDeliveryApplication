@@ -38,13 +38,13 @@ body {
     font-size:10px;
     color:grey;
 }
-.square > button {
+.register-button {
     background-color: #0D6EFD;
     border-width: 0px;
     border-radius: 3px;
     color:white;
     line-height:35px;
 }
-.square > button:hover {
+.button:hover {
     background-color: #1e90ff;
 }

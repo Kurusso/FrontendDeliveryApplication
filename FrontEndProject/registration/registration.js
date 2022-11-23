@@ -1,6 +1,6 @@
-function register() {
+async function register() {
     let data = document.querySelectorAll(".data-field");
-    fetch("https://food-delivery.kreosoft.ru/api/account/register", {
+    await fetch("https://food-delivery.kreosoft.ru/api/account/register", {
         method: 'POST',
         body: JSON.stringify(
             {"fullName": data[0].value,

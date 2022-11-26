@@ -44,7 +44,7 @@ async function renderPage(){
        if(element.style.display=="")
            element.remove();
    })
-   console.log(json.dishes)
+   console.log(json)
     pageJson.dishes.forEach(element => {
         clone.push(document.querySelector(".dish-box").cloneNode(true))
         clone[i].style.display="";

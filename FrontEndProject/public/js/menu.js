@@ -1,6 +1,9 @@
 let isVegetarian;
 var pageJson
-async function getDishes(){
+var pageRegexp= new RegExp("page=([1-9]+[0-9]*)")
+var sortByRegexp= new RegExp("sorting=(NameAsc|NameDesc|PriceAsc|PriceDesc|RatingAsc|RatingDesc)")
+var categoriesRegexp = new RegExp("categories=(WOK|Soup|Pizza|Dessert|Drink)")
+async function changeLink(){
     let data = document.querySelectorAll(".data-field");
     var selected = [];
     for (var option of document.querySelector('.dish').options)
@@ -9,22 +12,39 @@ async function getDishes(){
             selected.push(option.value);
         }
     }
-    let url=`https://food-delivery.kreosoft.ru/api/dish?`;
+    //https://food-delivery.kreosoft.ru/api/dish?
+    let url=`http://localhost:3000/`;
     selected.forEach(element => url=url+`categories=${element}&`);
     url=url+`vegetarian=${isVegetarian}&sorting=${data[1].value}&page=1`
-   var response = await fetch(url);
-    return response.json()
+    window.location.href=url;
+
 }
 async function renderPage(){
-    pageJson = await getDishes();
-    location.hash = "?pg=" + pageJson.pagination.current;
+    let url= window.location.href;
+    var pageNumber = pageRegexp.exec(url)[1];
+    var sortBy = sortByRegexp.exec(url)[1];
+    var urlForFetch="https://food-delivery.kreosoft.ru/api/dish?"
+    var categories =[]
+    var m;
+    do {
+        m = categoriesRegexp.exec(url);
+        if (m) {
+           url= url.slice(m.index+m[0].length)
+            categories.push(m[1])
+        }
+    } while (m!=null);
+    categories.forEach(element => urlForFetch=urlForFetch+`categories=${element}&`);
+    urlForFetch=urlForFetch+`vegetarian=${isVegetarian}&sorting=${sortBy}&page=1`
+    console.log(urlForFetch)
+    pageJson = (await fetch(urlForFetch));
+    var json=pageJson.json();
    let clone = []
     let i=0;
    document.querySelectorAll(".dish-box").forEach(element=>{
        if(element.style.display=="")
            element.remove();
    })
-   console.log(pageJson)
+   console.log(json.dishes)
     pageJson.dishes.forEach(element => {
         clone.push(document.querySelector(".dish-box").cloneNode(true))
         clone[i].style.display="";
@@ -36,22 +56,7 @@ async function renderPage(){
         document.querySelector(".dish-list").appendChild(clone[i]);
         i++;
     })
-    let pages=document.querySelectorAll(".page-link")
-    if(pageJson.pagination.current!=1 && pageJson.pagination.current!=pageJson.pagination.count){
-    pages[1].innerHTML=pageJson.pagination.current - 1;
-    pages[2].innerHTML=pageJson.pagination.current;
-    pages[3].innerHTML=pageJson.pagination.current + 1;
-    }
-    else if(pageJson.pagination.current==1){
-        pages[1].innerHTML=pageJson.pagination.current ;
-        pages[2].innerHTML=pageJson.pagination.current + 1;
-        pages[3].innerHTML=pageJson.pagination.current + 2;
-    }
-    else {
-        pages[1].innerHTML=pageJson.pagination.current -2;
-        pages[2].innerHTML=pageJson.pagination.current - 1;
-        pages[3].innerHTML=pageJson.pagination.current;
-    }
+
 }
 document.addEventListener("DOMContentLoaded", () =>{
     const nav = document.querySelector('.header')
@@ -64,8 +69,15 @@ document.addEventListener("DOMContentLoaded", () =>{
         isVegetarian=!isVegetarian;
     })
     document.querySelector(".filter-button").addEventListener("click", ()=>{
-       renderPage();
+        changeLink();
        console.log(window.location.href)
     });
 
+    window.addEventListener('popstate', ()=>{
+        renderPage();
+    });
+    const pushUrl = (href) => {
+        history.pushState({}, '', href);
+        window.dispatchEvent(new Event('popstate'));
+    };
 })

@@ -47,9 +47,10 @@ app.get('/login',(req,res) =>{
 app.get('/register',(req,res) =>{
     res.sendFile(__dirname + '/public/html/registration.html')
 })
-app.get(new RegExp('/menu'),(req,res) =>{
+app.get(new RegExp('/'),(req,res) =>{
     res.sendFile(__dirname + '/public/html/menu.html')
 })
 app.listen(port,()=>{
     console.info(__dirname)
 })
+// ?(categories=(WOK|Soup|Pizza|Dessert|Drink)&?)*(vegitarian=(true|false)&?)?(sorting=(NameAsc|NameDesc|PriceAsc|PriceDesc|RatingAsc|RatingDesc)&?)?(page=[1-9]+[0-9]*)?

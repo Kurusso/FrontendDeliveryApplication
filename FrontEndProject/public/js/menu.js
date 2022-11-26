@@ -1,11 +1,12 @@
 let isVegetarian;
 var pageJson
-var currentPage=1;
+let currentPage=1;
 var pageRegexp= new RegExp("page=([1-9]+[0-9]*)")
 var sortByRegexp= new RegExp("sorting=(NameAsc|NameDesc|PriceAsc|PriceDesc|RatingAsc|RatingDesc)")
 var categoriesRegexp = new RegExp("categories=(WOK|Soup|Pizza|Dessert|Drink)")
 var vegetarianRegexp = new RegExp("vegetarian=(true|false)")
 async function changeLink(){
+
     let data = document.querySelectorAll(".data-field");
     var selected = [];
     for (var option of document.querySelector('.dish').options)
@@ -19,6 +20,18 @@ async function changeLink(){
     url=url+`vegetarian=${isVegetarian}&sorting=${data[1].value}&page=${currentPage}`
     window.location.href=url;
 
+}
+async function changePage(){
+    var url=window.location.href;
+    var page = url.search(pageRegexp);
+    if (page!=null){
+        url=url.slice(0,page+5)
+        url+=currentPage;
+    }
+    else{
+        url+=`&page=${currentPage}`;
+    }
+window.location.href=url;
 }
 async function FetchMenu(urlForFetch){
     var response = await fetch(urlForFetch);
@@ -64,9 +77,10 @@ async function urlConstructor(){
     }
     if (pageNumber!=null) {
         urlForFetch = urlForFetch + `&page=${pageNumber}`
+        currentPage=pageNumber;
     }
     else{
-        urlForFetch = urlForFetch + `&page=1`
+        urlForFetch = urlForFetch + `&page=${currentPage}`
     }
     return urlForFetch
 }
@@ -91,7 +105,28 @@ async function renderPage(){
         document.querySelector(".dish-list").appendChild(clone[i]);
         i++;
     })
-
+    let pages=document.querySelectorAll(".page-link")
+    if(pageJson.pagination.current!=1 && pageJson.pagination.current!=pageJson.pagination.count){
+        pages[1].innerHTML=pageJson.pagination.current - 1;
+        pages[2].innerHTML=pageJson.pagination.current;
+        pages[2].style.background="#0D6EFD"
+        pages[2].style.color="white"
+        pages[3].innerHTML=pageJson.pagination.current + 1;
+    }
+    else if(pageJson.pagination.current==1){
+        pages[1].innerHTML=pageJson.pagination.current ;
+        pages[1].style.background="#0D6EFD"
+        pages[1].style.color="white"
+        pages[2].innerHTML=pageJson.pagination.current + 1;
+        pages[3].innerHTML=pageJson.pagination.current + 2;
+    }
+    else {
+        pages[1].innerHTML=pageJson.pagination.current -2;
+        pages[2].innerHTML=pageJson.pagination.current - 1;
+        pages[3].innerHTML=pageJson.pagination.current;
+        pages[3].style.background="#0D6EFD"
+        pages[3].style.color="white"
+    }
 }
 document.addEventListener("DOMContentLoaded", () =>{
     const nav = document.querySelector('.header')
@@ -115,4 +150,11 @@ document.addEventListener("DOMContentLoaded", () =>{
         history.pushState({}, '', href);
         window.dispatchEvent(new Event('popstate'));
     };
+
+    document.querySelector(".page-link").addEventListener("click",()=>{
+        console.log("test")
+        currentPage--;
+        changePage();
+    })
 })
+

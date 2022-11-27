@@ -15,21 +15,26 @@ async function changeLink(){
             selected.push(option.value);
         }
     }
-    let url=`http://localhost:3000/`;
+    let url=`http://localhost:3000/?`;
     selected.forEach(element => url=url+`categories=${element}&`);
-    url=url+`vegetarian=${isVegetarian}&sorting=${data[1].value}&page=${currentPage}`
+    url=url+`vegetarian=${isVegetarian}&sorting=${data[1].value}`
     window.location.href=url;
 
 }
 async function changePage(){
     var url=window.location.href;
     var page = url.search(pageRegexp);
-    if (page!=null){
+    if (page!=-1){
         url=url.slice(0,page+5)
         url+=currentPage;
     }
     else{
-        url+=`&page=${currentPage}`;
+        if(url[url.length-1]=='/'){
+            url += `?page=${currentPage}`;
+        }
+            else {
+            url += `&page=${currentPage}`;
+        }
     }
 window.location.href=url;
 }
@@ -39,7 +44,6 @@ async function FetchMenu(urlForFetch){
 }
 async function urlConstructor(){
     let url= window.location.href;
-    console.log(url,"url");
     let pageNumber;
     let sortBy;
     let vegetarian;
@@ -93,7 +97,6 @@ async function renderPage(){
        if(element.style.display=="")
            element.remove();
    })
-   console.log(pageJson)
     pageJson.dishes.forEach(element => {
         clone.push(document.querySelector(".dish-box").cloneNode(true))
         clone[i].style.display="";
@@ -106,7 +109,7 @@ async function renderPage(){
         i++;
     })
     let pages=document.querySelectorAll(".page-link")
-    if(pageJson.pagination.current!=1 && pageJson.pagination.current!=pageJson.pagination.count){
+    if((pageJson.pagination.current!=1 && pageJson.pagination.current!=pageJson.pagination.count) || pageJson.pagination.current==2){
         pages[1].innerHTML=pageJson.pagination.current - 1;
         pages[2].innerHTML=pageJson.pagination.current;
         pages[2].style.background="#0D6EFD"
@@ -135,6 +138,12 @@ document.addEventListener("DOMContentLoaded", () =>{
     fetch("/html/footer.html").then(res=>res.text()).then(data2=>footer.innerHTML=data2)
     isVegetarian=false;
     renderPage();
+    if(!window.location.href.match(new RegExp(`0/[?](categories=(WOK|Soup|Pizza|Dessert|Drink)&?)*(vegetarian=(true|false)&?)?(sorting=(NameAsc|NameDesc|PriceAsc|PriceDesc|RatingAsc|RatingDesc)&?)?(page=[1-9]+[0-9]*)?$`))){
+        window.location.href="https://e7.pngegg.com/pngimages/60/588/png-clipart-oops-illustration-green-stunned-the-explosion-stickers-text-logo.png"
+    }
+    let firstPageElement = document.querySelector(".page-link-1");
+    let secondPageElement = document.querySelector(".page-link-2");
+    let thirdPageElement = document.querySelector(".page-link-3");
     document.querySelector(".clicker").addEventListener("click", ()=>{
         isVegetarian=!isVegetarian;
     })
@@ -143,17 +152,35 @@ document.addEventListener("DOMContentLoaded", () =>{
        console.log(window.location.href)
     });
 
-    window.addEventListener('popstate', ()=>{
-        renderPage();
-    });
-    const pushUrl = (href) => {
-        history.pushState({}, '', href);
-        window.dispatchEvent(new Event('popstate'));
-    };
 
-    document.querySelector(".page-link").addEventListener("click",()=>{
-        console.log("test")
-        currentPage--;
+    document.querySelector(".page-link-back").addEventListener("click",()=>{
+        if(currentPage>1) {
+            currentPage--;
+        }
+        changePage();
+    })
+    document.querySelector(".page-link-next").addEventListener("click",()=>{
+        if(currentPage<pageJson.pagination.count) {
+            currentPage++;
+        }
+        changePage();
+    })
+
+    document.querySelector(".page-item-first").addEventListener("click",()=>{
+        if(firstPageElement.innerHTML<=pageJson.pagination.count) {
+        currentPage=firstPageElement.innerHTML;
+        }
+        changePage();
+    })
+    document.querySelector(".page-item-second").addEventListener("click",()=>{
+        if(secondPageElement.innerHTML<=pageJson.pagination.count) {
+        currentPage=secondPageElement.innerHTML;}
+        changePage();
+    })
+    document.querySelector(".page-item-third").addEventListener("click",()=>{
+        if(thirdPageElement.innerHTML<=pageJson.pagination.count) {
+        currentPage=thirdPageElement.innerHTML;
+        }
         changePage();
     })
 })

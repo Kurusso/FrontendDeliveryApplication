@@ -1,0 +1,20 @@
+.item-square {
+    position: relative;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.12), 0 10px 10px rgba(0,0,0,0.10);
+    padding: 10px 1%;
+    box-sizing: border-box;
+    width:85%;
+}
+.item-inner-square{
+    position: relative;
+    border-width: 1px;
+    border-style: solid;
+    border-color: lightgrey;
+    padding: 10px 1%;
+    box-sizing: border-box;
+    min-width:85%
+}
+.image-size{
+    max-width: 35%;
+
+}

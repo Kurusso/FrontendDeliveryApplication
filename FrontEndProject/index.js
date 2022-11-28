@@ -47,7 +47,7 @@ app.get('/login',(req,res) =>{
 app.get('/register',(req,res) =>{
     res.sendFile(__dirname + '/public/html/registration.html')
 })
-app.get(new RegExp('^/item(/[A-z0-9]+)$'),(req,res) =>{
+app.get(new RegExp('^/item(/[A-z0-9-]+)$'),(req,res) =>{
     res.sendFile(__dirname + '/public/html/item.html')
 })
 

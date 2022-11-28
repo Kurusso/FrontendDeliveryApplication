@@ -1,10 +1,10 @@
 let isVegetarian;
-var pageJson
+let pageJson;
 let currentPage=1;
-var pageRegexp= new RegExp("page=([1-9]+[0-9]*)")
-var sortByRegexp= new RegExp("sorting=(NameAsc|NameDesc|PriceAsc|PriceDesc|RatingAsc|RatingDesc)")
-var categoriesRegexp = new RegExp("categories=(WOK|Soup|Pizza|Dessert|Drink)")
-var vegetarianRegexp = new RegExp("vegetarian=(true|false)")
+const pageRegexp= new RegExp("page=([1-9]+[0-9]*)")
+const sortByRegexp= new RegExp("sorting=(NameAsc|NameDesc|PriceAsc|PriceDesc|RatingAsc|RatingDesc)")
+const categoriesRegexp = new RegExp("categories=(WOK|Soup|Pizza|Dessert|Drink)")
+const vegetarianRegexp = new RegExp("vegetarian=(true|false)")
 async function changeLink(){
 
     let data = document.querySelectorAll(".data-field");
@@ -102,10 +102,15 @@ async function renderPage(){
         clone[i].style.display="";
         clone[i].querySelector(".image-size").src=element.image
         clone[i].querySelector(".dish-name").innerHTML=element.name
+        clone[i].querySelector(".star-rating").innerHTML=element.rating
         clone[i].querySelector(".category-name").innerHTML+=element.category
         clone[i].querySelector(".dish-text").innerHTML=element.description
         clone[i].querySelector(".dish-cost").innerHTML+=element.price
+        clone[i].querySelector(".dish-id").innerHTML=element.id
         document.querySelector(".dish-list").appendChild(clone[i]);
+        clone[i].addEventListener("click", ()=>{
+            window.location.href=`http://localhost:3000/item/${element.id}`
+        })
         i++;
     })
     let pages=document.querySelectorAll(".page-link")
@@ -138,7 +143,7 @@ document.addEventListener("DOMContentLoaded", () =>{
     fetch("/html/footer.html").then(res=>res.text()).then(data2=>footer.innerHTML=data2)
     isVegetarian=false;
     renderPage();
-    if(!window.location.href.match(new RegExp(`0/[?](categories=(WOK|Soup|Pizza|Dessert|Drink)&?)*(vegetarian=(true|false)&?)?(sorting=(NameAsc|NameDesc|PriceAsc|PriceDesc|RatingAsc|RatingDesc)&?)?(page=[1-9]+[0-9]*)?$`))){
+    if(!window.location.href.match(new RegExp(`0/([?](categories=(WOK|Soup|Pizza|Dessert|Drink)&?)*(vegetarian=(true|false)&?)?(sorting=(NameAsc|NameDesc|PriceAsc|PriceDesc|RatingAsc|RatingDesc)&?)?(page=[1-9]+[0-9]*)?)?$`))){
         window.location.href="https://e7.pngegg.com/pngimages/60/588/png-clipart-oops-illustration-green-stunned-the-explosion-stickers-text-logo.png"
     }
     let firstPageElement = document.querySelector(".page-link-1");
@@ -183,5 +188,6 @@ document.addEventListener("DOMContentLoaded", () =>{
         }
         changePage();
     })
+
 })
 

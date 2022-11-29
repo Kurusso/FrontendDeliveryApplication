@@ -79,7 +79,7 @@ async function urlConstructor(){
     else {
         urlForFetch = urlForFetch + `&sorting=NameAsc`
     }
-    if (pageNumber!=null) {
+    if (pageNumber!=null ) {
         urlForFetch = urlForFetch + `&page=${pageNumber}`
         currentPage=pageNumber;
     }
@@ -136,6 +136,7 @@ async function renderPage(){
         pages[3].style.color="white"
     }
 }
+
 document.addEventListener("DOMContentLoaded", () =>{
     const nav = document.querySelector('.header')
     const footer = document.querySelector(".footer")

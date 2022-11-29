@@ -14,10 +14,11 @@ async function login() {
         if (response.status == 200) return response.json();
         else throw response;
     }).then((json) => {
-        document.cookie = `token=${json.token}; path=/`;
-        document.cookie = `username=${nickName}; path=/`;
-    });
-    console.log(document.cookie)
+        document.cookie = `token=${json.token}`;
+    }).then(()=>{
+        window.location.href="http://localhost:3000"
+    });;
+
 }
 
 document.addEventListener("DOMContentLoaded", () =>{

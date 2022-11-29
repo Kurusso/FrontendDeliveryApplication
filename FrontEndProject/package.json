@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "/FrontEndProject/index.js",
+
   "scripts": {
     "start": "/FrontEndProject/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"

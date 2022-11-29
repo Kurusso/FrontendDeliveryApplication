@@ -8,7 +8,7 @@ async function register() {
             "email": data[5].value,
             "address": data[3].value,
             "birthDate": data[4].value + "T00:00:00Z",
-            "gender": parseGender(data[1].value),
+            "gender": data[1].value,
             "phoneNumber": data[2].value}),
         headers: new Headers({
             'Content-Type': 'application/json'
@@ -17,19 +17,13 @@ async function register() {
         if (response.status == 200) return response.json();
         else throw response;
     }).then((json) => {
-        document.cookie = `token=${json.token}; path=/`;
-        document.cookie = `username=${nickName}; path=/`;
+        document.cookie = `token=${json.token}`;
+    }).then((json)=>{
+        window.location.href="http://localhost:3000"
     });
-    console.log(document.cookie)
+
 }
-function parseGender(gender){
-   if(gender==1){
-       return "Male"
-   }
-   else{
-       return  "Female"
-   }
-}
+
 document.addEventListener("DOMContentLoaded", () =>{
     console.log("teat")
     const nav = document.querySelector('.header')

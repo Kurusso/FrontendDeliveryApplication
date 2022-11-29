@@ -32,23 +32,22 @@ const path = require('path')
 
 const createPath = (page) => path.resolve(__dirname,'public', 'html', `${page}.html`)
 let basePath=''
-
+app.set('views', path.join(__dirname,'views'))
+app.set('view engine', 'ejs')
 app.use(express.static(__dirname + '/public'));
 app.use('/js',express.static(__dirname + '/node_modules/jquery/dist'));
 
 app.get('',(req,res) =>{
-
-    res.sendFile(__dirname + '/public/html/menu.html')
+    res.render('menu')
 })
 app.get('/login',(req,res) =>{
-
-    res.sendFile(__dirname + '/public/html/login.html')
+    res.render('login')
 })
 app.get('/register',(req,res) =>{
-    res.sendFile(__dirname + '/public/html/registration.html')
+    res.render( 'registration')
 })
 app.get(new RegExp('^/item(/[A-z0-9-]+)$'),(req,res) =>{
-    res.sendFile(__dirname + '/public/html/item.html')
+    res.render('item')
 })
 
 

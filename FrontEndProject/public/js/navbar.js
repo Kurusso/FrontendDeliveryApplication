@@ -10,6 +10,7 @@ async function renderNav(){
             console.log(" element.style.display")
         })
     }
+
 }
 document.addEventListener("DOMContentLoaded",  () => {
     renderNav()

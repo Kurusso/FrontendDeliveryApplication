@@ -8,6 +8,7 @@ footer {
     border-top-style: solid;
     border-top-width: 1px;
     border-top-color: lightgray;
+    display: block;
 }
 footer > div{
     color:black;

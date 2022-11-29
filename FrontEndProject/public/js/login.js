@@ -14,6 +14,7 @@ async function login() {
         if (response.status == 200) return response.json();
         else throw response;
     }).then((json) => {
+        console.log(json.token)
         document.cookie = `token=${json.token}`;
     }).then(()=>{
         window.location.href="http://localhost:3000"

@@ -6,7 +6,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 
 </head>
-<nav class="navbar navbar-expand-lg navbar-custom">
+<nav class="navbar navbar-expand-md navbar-custom">
     <div class="container-fluid">
         <a class="navbar-brand" href="http://localhost:3000/">Delivery.Кушац</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Переключатель навигации">
@@ -24,12 +24,23 @@
                     <a class="nav-link active" href="#">Корзина</a>
                 </li>
             </ul>
-            <div class="nav-item my-sm-0 right optional">
+
+            <div class="nav-item my-sm-0 right optional " style="display: none">
                 <a class="nav-link active" href="http://localhost:3000/register">Регистрация</a>
             </div>
-            <div class="nav-item my-sm-0 right optional">
+
+            <div class="nav-item my-sm-0 right optional" style="display: none">
                 <a class="nav-link active" href="http://localhost:3000/login">Вход</a>
             </div>
+
+            <div class="nav-item my-sm-0 right optional2" style="display: none">
+                <div class="mail"></div>
+            </div>
+
+            <div class="nav-item my-sm-0 right optional2 logout" style="display: none">
+                <a class="nav-link active">Выйти</a>
+            </div>
+
         </div>
 
     </div>

@@ -1,5 +1,6 @@
 import {checkIfAuthorized} from "./auxiliary.js";
 import {setCookie} from "./auxiliary.js";
+import {getCookie} from "./auxiliary.js";
 
 async function renderNav(){
     let responseData;
@@ -28,7 +29,13 @@ async function renderNav(){
 document.addEventListener("DOMContentLoaded",  () => {
     renderNav()
     document.querySelector(".logout").addEventListener("click",()=>{
-        setCookie("token","")
-        window.location.href="http://localhost:3000/"
+        fetch("https://food-delivery.kreosoft.ru/api/account/logout",{
+            method: 'POST',
+            headers:{
+                Authorization:  "Bearer " + getCookie("token")
+            }
+        }).then(()=> setCookie("token","")).then(window.location.href="http://localhost:3000/")
+
+
     })
 })

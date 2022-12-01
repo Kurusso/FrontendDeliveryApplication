@@ -48,6 +48,30 @@
     height: 30px;
     width: 80px;
 }
+.input-number{
+    max-width: 80px;
+    width: 30px;
+    background-color: #F8F9FA;
+    text-align: center;
+}
+.inside{
+    padding-top: 5px;
+}
+.input-group{
+    border-width: 1px;
+    border-color: lightgrey;
+    border-style: solid;
+    padding: 0px!important;
+    border-radius: 5px;
+}
+.button2{
+    border-width: 0px;
+    background-color: #F8F9FA;
+    border-radius: 5px;
+}
+.input-number{
+    border-width: 0px;
+}
 @media screen and (min-width: 768px) {
     .delete-button{
         position: absolute;

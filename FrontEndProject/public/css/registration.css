@@ -16,6 +16,7 @@ body {
 }
 .flexspace {
     flex: 1 0 auto;
+
 }
 
 .square > .data-field {
@@ -47,4 +48,7 @@ body {
 }
 .button:hover {
     background-color: #1e90ff;
+}
+.button{
+    border-width: 0px;
 }

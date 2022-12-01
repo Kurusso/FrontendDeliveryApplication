@@ -49,7 +49,9 @@ app.get('/register',(req,res) =>{
 app.get(new RegExp('^/item(/[A-z0-9-]+)$'),(req,res) =>{
     res.render('item')
 })
-
+app.get('/cart',(req,res)=>{
+    res.render('cart');
+})
 
 app.listen(port,()=>{
     console.info(__dirname)

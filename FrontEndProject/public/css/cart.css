@@ -1,0 +1,65 @@
+.cart-square{
+    position: relative;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.12), 0 10px 10px rgba(0,0,0,0.10);
+    padding: 10px 1%;
+    box-sizing: border-box;
+    width:85%;
+
+}
+.cart-dish-box{
+    position: relative;
+    width: 100%;
+    border-width: 1px;
+    border-color: lightgrey;
+    border-style: solid;
+    min-height:90px ;
+
+
+}
+.image-size{
+    height: 90%;
+    width: 180px;
+    align-items: center;
+    float: left;
+    border-radius: 40px;
+}
+.dish-name{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.container{
+    display: flex;
+    float: left;
+    height: 90px;
+    width: 180px!important;
+    align-items: center;
+    margin-left: 0px!important;
+    margin-right: 20px!important;
+}
+.col-md-auto{
+    margin-left: 5px!important;
+}
+.delete-button{
+    background-color: #DC3545;
+    border-radius: 5px;
+    border-width: 0px;
+    color: white;
+    height: 30px;
+    width: 80px;
+}
+@media screen and (min-width: 768px) {
+    .delete-button{
+        position: absolute;
+        top:10px;
+        right:10px;
+    }
+    }
+
+@media screen and (max-width: 768px) {
+    .delete-button{
+        position: absolute;
+        bottom:5px;
+        right: 10px;
+    }
+}

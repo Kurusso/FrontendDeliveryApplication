@@ -1,8 +1,10 @@
+function render(){
 
+}
 document.addEventListener("DOMContentLoaded",()=>{
     const footer = document.querySelector(".footer")
     fetch("/html/footer.html").then(res=>res.text()).then(data2=>footer.innerHTML=data2)
-    render();
+    render()
     document.querySelectorAll(".input-group").forEach(element=>{
         element.querySelector(".quantity-left-minus").addEventListener("click",(event)=>{
             let element = event.target;

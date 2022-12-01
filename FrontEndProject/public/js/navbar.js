@@ -11,9 +11,8 @@ async function renderNav(){
     catch (err){
         isAuthorized=null;
     }
-    console.log(isAuthorized)
     if (isAuthorized!=null) {
-        console.log(responseData)
+
         document.querySelectorAll(".optional2").forEach(element => {
             element.style.display="";
         document.querySelector(".mail").innerHTML=responseData.email

@@ -2,7 +2,7 @@ const tokenRegexp= new RegExp("token=([A-z0-9._-]*)")
 
 export async function checkIfAuthorized(){
     let jwt = tokenRegexp.exec(document.cookie)[1];
-    console.log(jwt)
+
         return await Promise.resolve( fetch("https://food-delivery.kreosoft.ru/api/account/profile",{
             headers:{
                 Authorization: "Bearer " + jwt

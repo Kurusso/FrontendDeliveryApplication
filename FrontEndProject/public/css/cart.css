@@ -4,7 +4,7 @@
     padding: 10px 1%;
     box-sizing: border-box;
     width:85%;
-
+    min-width: 215px;
 }
 .cart-dish-box{
     position: relative;
@@ -63,6 +63,8 @@
     border-style: solid;
     padding: 0px!important;
     border-radius: 5px;
+    max-width: 75px!important;
+    background-color: #F8F9FA;
 }
 .button2{
     border-width: 0px;
@@ -78,6 +80,7 @@
         top:10px;
         right:10px;
     }
+
     }
 
 @media screen and (max-width: 768px) {
@@ -85,5 +88,9 @@
         position: absolute;
         bottom:5px;
         right: 10px;
+    }
+    .input-group{
+        margin-left: 10px;
+        margin-bottom: 5px;
     }
 }

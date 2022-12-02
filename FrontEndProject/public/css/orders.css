@@ -1,0 +1,47 @@
+.orders-square{
+    position: relative;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.12), 0 10px 10px rgba(0,0,0,0.10);
+    padding: 10px 1%;
+    box-sizing: border-box;
+    width:85%;
+    min-width: 500px;
+}
+.inside-square{
+    position: relative;
+    border-width: 1px;
+    border-color: lightgrey;
+    border-style: solid;
+    border-radius: 3px;
+    padding: 10px 1%;
+    box-sizing: border-box;
+    padding: 20px 20px;
+    margin-bottom: 30px;
+}
+.place-button{
+    position: absolute;
+    top:25%;
+    right: 3%;
+    background-color: #198754;
+    border-width: 0px;
+    border-radius: 3px;
+    color:white;
+    line-height:25px;
+    width: 90px;
+    padding: 2px 5px 5px 5px;
+}
+.place-button:hover{
+    background-color: #198704;
+}
+.order-box{
+    padding: 5px 15px;
+    position: relative;
+    width: 100%;
+    border-width: 1px;
+    border-color: lightgrey;
+    border-style: solid;
+    min-height:90px ;
+}
+.orderDate{
+    font-weight: bold;
+    text-decoration: underline;
+}

@@ -52,9 +52,14 @@ app.get(new RegExp('^/item(/[A-z0-9-]+)$'),(req,res) =>{
 app.get('/cart',(req,res)=>{
     res.render('cart');
 })
+app.get('/orders',(req,res)=>{
+    res.render('orders')
+})
+
 
 app.listen(port,()=>{
     console.info(__dirname)
 })
+
 // ?(categories=(WOK|Soup|Pizza|Dessert|Drink)&?)*(vegitarian=(true|false)&?)?(sorting=(NameAsc|NameDesc|PriceAsc|PriceDesc|RatingAsc|RatingDesc)&?)?(page=[1-9]+[0-9]*)?
 //^/[?](categories=(WOK|Soup|Pizza|Dessert|Drink)&?)*(vegetarian=(true|false)&?)?(sorting=(NameAsc|NameDesc|PriceAsc|PriceDesc|RatingAsc|RatingDesc)&?)?(page=[1-9]+[0-9]*)?$

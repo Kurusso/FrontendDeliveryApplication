@@ -1,6 +1,7 @@
 import {checkIfAuthorized} from "./auxiliary.js";
 import {setCookie} from "./auxiliary.js";
 import {getCookie} from "./auxiliary.js";
+import {fetchBasket} from "./auxiliary.js";
 
 async function renderNav(){
     let responseData;
@@ -11,13 +12,14 @@ async function renderNav(){
     catch (err){
         isAuthorized=null;
     }
-    console.log(isAuthorized)
     if (isAuthorized!=null) {
-        console.log(responseData)
+
         document.querySelectorAll(".optional2").forEach(element => {
             element.style.display="";
         document.querySelector(".mail").innerHTML=responseData.email
         })
+        await fetchBasket().then(res=> res.json()).then(data=>responseData=data);
+        document.querySelector(".dish-amount").innerHTML=responseData.length
     }
     else{
         document.querySelectorAll(".optional").forEach(element => {

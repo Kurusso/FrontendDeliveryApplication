@@ -31,6 +31,7 @@
 
 }
 .dish-footer{
+    min-height: 38px;
     position: absolute;
     bottom: 0;
     right: 12px;
@@ -159,5 +160,34 @@ input:checked + .slider:before {
     box-shadow: 0 14px 28px rgba(0,0,0,0.12), 0 10px 10px rgba(0,0,0,0.10);
     padding: 10px 1%;
     box-sizing: border-box;
-    width:63%
+    width:63%;
+    min-width:290px;
+}
+.dish-flex{
+    height: 120px;
+}
+.input-number{
+    max-width: 80px;
+    width: 30px;
+    background-color: #F8F9FA;
+    text-align: center;
+}
+.inside{
+    padding-top: 5px;
+}
+.input-group{
+    border-width: 1px;
+    border-color: lightgrey;
+    border-style: solid;
+    padding: 0px!important;
+    border-radius: 5px;
+}
+.button2{
+    padding-top:3px!important;
+    border-width: 0px;
+    background-color: #F8F9FA;
+    border-radius: 5px;
+}
+.input-number{
+    border-width: 0px;
 }

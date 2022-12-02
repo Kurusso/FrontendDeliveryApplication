@@ -2,13 +2,21 @@ const tokenRegexp= new RegExp("token=([A-z0-9._-]*)")
 
 export async function checkIfAuthorized(){
     let jwt = tokenRegexp.exec(document.cookie)[1];
-    console.log(jwt)
+
         return await Promise.resolve( fetch("https://food-delivery.kreosoft.ru/api/account/profile",{
             headers:{
                 Authorization: "Bearer " + jwt
             }}));
 
 
+}
+export async function fetchBasket(){
+   let jwt = tokenRegexp.exec(document.cookie)[1];
+
+    return await Promise.resolve( fetch("https://food-delivery.kreosoft.ru/api/basket",{
+        headers:{
+            Authorization: "Bearer " + jwt
+        }}));
 }
 export function getCookie(name) {
     let matches = document.cookie.match(new RegExp(
@@ -39,4 +47,23 @@ export function setCookie(name, value, options = {}) {
     }
 
     document.cookie = updatedCookie;
+}
+
+export async function postDish(element){
+    let jwt = tokenRegexp.exec(document.cookie)[1];
+    await fetch(`https://food-delivery.kreosoft.ru/api/basket/dish/${element}`,{
+        method: 'POST',
+        headers:{
+            Authorization: "Bearer " + jwt
+        }
+    })
+}
+export async function deleteDish(element,shouldDecrease){
+    let jwt = tokenRegexp.exec(document.cookie)[1];
+    await fetch(`https://food-delivery.kreosoft.ru/api/basket/dish/${element}?increase=${shouldDecrease}`,{
+        method: 'DELETE',
+        headers:{
+            Authorization: "Bearer " + jwt
+        }
+    })
 }

@@ -1,3 +1,7 @@
+import {fetchBasket} from "./auxiliary.js"
+import {postDish} from "./auxiliary.js";
+import {deleteDish} from "./auxiliary.js";
+
 let isVegetarian;
 let pageJson;
 let currentPage=1;
@@ -41,6 +45,9 @@ window.location.href=url;
 async function FetchMenu(urlForFetch){
     var response = await fetch(urlForFetch);
     return response.json()
+}
+function checkIfInCart(dish,cart){
+   return  cart.filter(element=> element.id == dish.id)
 }
 async function urlConstructor(){
     let url= window.location.href;
@@ -89,6 +96,17 @@ async function urlConstructor(){
     return urlForFetch
 }
 async function renderPage(){
+
+    var responseData;
+    var logedIn;
+    try {
+        await fetchBasket().then(res=> res.json()).then(data=>responseData=data);
+        logedIn=true
+    }
+    catch (err){
+        logedIn=false
+    }
+    console.log(responseData)
     var urlForFetch= await urlConstructor();
     pageJson = await FetchMenu(urlForFetch);
    let clone = []
@@ -108,11 +126,46 @@ async function renderPage(){
         clone[i].querySelector(".dish-cost").innerHTML+=element.price
         clone[i].querySelector(".dish-id").innerHTML=element.id
         document.querySelector(".dish-list").appendChild(clone[i]);
-        clone[i].addEventListener("click", ()=>{
+        clone[i].querySelector(".padding-box").addEventListener("click", ()=>{
             window.location.href=`http://localhost:3000/item/${element.id}`
         })
+        if(logedIn){
+        clone[i].querySelector(".add-button").addEventListener("click",(event)=>{
+            var elem=event.target
+             postDish(element.id);
+            elem.style.display="none"
+            elem.nextSibling.nextSibling.style.display=""
+            elem.nextSibling.nextSibling.querySelector(".input-number").value=1
+            document.querySelector(".dish-amount").innerHTML++;
+        })
+            let check=checkIfInCart(element,responseData)
+           if(check.length!=0){
+
+               clone[i].querySelector(".add-button").style.display="none"
+               clone[i].querySelector(".counter").style.display=""
+               clone[i].querySelector(".input-number").value=check[0].amount
+           }
+            clone[i].querySelector(".quantity-left-minus").addEventListener("click",(event)=>{
+                let elem = event.target;
+                if(elem.parentElement.nextSibling.nextSibling.value>0) {
+                    elem.parentElement.nextSibling.nextSibling.value--;
+                    deleteDish(element.id,true);
+                    if(elem.parentElement.nextSibling.nextSibling.value==0){
+                        elem.parentElement.parentElement.parentElement.parentElement.style.display="none"
+                        elem.parentElement.parentElement.parentElement.parentElement.parentElement.querySelector(".add-button").style.display=""
+                        document.querySelector(".dish-amount").innerHTML--;
+                    }
+                }
+            })
+            clone[i].querySelector(".quantity-right-plus").addEventListener("click",(event)=>{
+                let elem = event.target;
+                elem.parentElement.previousSibling.previousSibling.value++;
+                postDish(element.id)
+            })
+        }
         i++;
     })
+
     let pages=document.querySelectorAll(".page-link")
     if((pageJson.pagination.current!=1 && pageJson.pagination.current!=pageJson.pagination.count) || pageJson.pagination.current==2){
         pages[1].innerHTML=pageJson.pagination.current - 1;

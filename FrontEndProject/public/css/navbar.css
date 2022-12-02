@@ -15,3 +15,11 @@ nav {
  .right{
     margin:10px;
 }
+ .dish-amount{
+     margin-left: 5px;
+     padding: 2px 10px;
+     background-color: #198754;
+     border-radius: 5px;
+     color: white;
+     text-align: center;
+ }

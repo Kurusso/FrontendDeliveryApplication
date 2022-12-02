@@ -45,3 +45,27 @@
     font-weight: bold;
     text-decoration: underline;
 }
+.accept-button{
+    position: absolute;
+    top:5px;
+    right: 3%;
+    border-color: #198754;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 3px;
+    color:#198754;
+    line-height:25px;
+    width: 250px;
+    padding: 2px 5px 5px 5px;
+    text-align: center;
+    background-color: rgba(0,0,0,0);
+ }
+.accept-button:hover{
+    background-color: #198754;
+    color: white;
+}
+.cost-container{
+    position: absolute;
+    bottom: 5px;
+    right: 3%;
+}

@@ -1,29 +1,7 @@
-const tokenRegexp= new RegExp("token=([A-z0-9._-]*)")
-let jwt;
-async function fetchBasket(){
-     jwt = tokenRegexp.exec(document.cookie)[1];
+import {fetchBasket} from "./auxiliary.js"
+import {postDish} from "./auxiliary.js";
+import {deleteDish} from "./auxiliary.js";
 
-    return await Promise.resolve( fetch("https://food-delivery.kreosoft.ru/api/basket",{
-        headers:{
-            Authorization: "Bearer " + jwt
-        }}));
-}
-async function postDish(element){
-   await fetch(`https://food-delivery.kreosoft.ru/api/basket/dish/${element}`,{
-        method: 'POST',
-        headers:{
-            Authorization: "Bearer " + jwt
-        }
-    })
-}
-async function deleteDish(element){
-    await fetch(`https://food-delivery.kreosoft.ru/api/basket/dish/${element}?increase=true`,{
-        method: 'DELETE',
-        headers:{
-            Authorization: "Bearer " + jwt
-        }
-    })
-}
 let isVegetarian;
 let pageJson;
 let currentPage=1;
@@ -158,6 +136,7 @@ async function renderPage(){
             elem.style.display="none"
             elem.nextSibling.nextSibling.style.display=""
             elem.nextSibling.nextSibling.querySelector(".input-number").value=1
+            document.querySelector(".dish-amount").innerHTML++;
         })
             let check=checkIfInCart(element,responseData)
            if(check.length!=0){
@@ -170,10 +149,11 @@ async function renderPage(){
                 let elem = event.target;
                 if(elem.parentElement.nextSibling.nextSibling.value>0) {
                     elem.parentElement.nextSibling.nextSibling.value--;
-                    deleteDish(element.id);
+                    deleteDish(element.id,true);
                     if(elem.parentElement.nextSibling.nextSibling.value==0){
                         elem.parentElement.parentElement.parentElement.parentElement.style.display="none"
                         elem.parentElement.parentElement.parentElement.parentElement.parentElement.querySelector(".add-button").style.display=""
+                        document.querySelector(".dish-amount").innerHTML--;
                     }
                 }
             })
@@ -185,6 +165,7 @@ async function renderPage(){
         }
         i++;
     })
+
     let pages=document.querySelectorAll(".page-link")
     if((pageJson.pagination.current!=1 && pageJson.pagination.current!=pageJson.pagination.count) || pageJson.pagination.current==2){
         pages[1].innerHTML=pageJson.pagination.current - 1;

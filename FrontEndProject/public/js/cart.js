@@ -1,5 +1,52 @@
-function render(){
+import {fetchBasket} from "./auxiliary.js";
+import {postDish} from "./auxiliary.js";
+import {deleteDish} from "./auxiliary.js";
 
+async function render(){
+    var responseData;
+    try {
+        await fetchBasket().then(res=> res.json()).then(data=>responseData=data);
+        console.log(responseData)
+    }
+    catch (err){
+        console.log(err)
+    }
+    let clone=[]
+    let i=0;
+    document.querySelectorAll(".cart-dish-box").forEach(element=>{
+        if(element.style.display=="")
+            element.remove();
+    })
+    responseData.forEach(element=>{
+
+        clone.push(document.querySelector(".cart-dish-box").cloneNode(true))
+        clone[i].style.display="";
+        clone[i].querySelector(".number").innerHTML=i+1;
+        clone[i].querySelector(".image-size").src=element.image
+        clone[i].querySelector(".dish-name").innerHTML=element.name
+        clone[i].querySelector(".dish-cost").innerHTML+=element.price
+        clone[i].querySelector(".input-number").value=element.amount
+        document.querySelector(".cart-dish-list").appendChild(clone[i]);
+        clone[i].querySelector(".quantity-left-minus").addEventListener("click",(event)=>{    //TODO: auxiliary
+            let elem = event.target;
+            if(elem.parentElement.nextSibling.nextSibling.value>1) {
+                elem.parentElement.nextSibling.nextSibling.value--;
+                deleteDish(element.id,true);
+            }
+        })
+        clone[i].querySelector(".quantity-right-plus").addEventListener("click",(event)=>{
+            let elem = event.target;
+            elem.parentElement.previousSibling.previousSibling.value++;
+            postDish(element.id)
+        })
+        clone[i].querySelector(".delete-button").addEventListener("click",(event)=>{
+            let elem =event.target
+            deleteDish(element.id,false)
+            elem.parentElement.remove()
+            document.querySelector(".dish-amount").innerHTML--;
+        })
+        i++;
+    })
 }
 document.addEventListener("DOMContentLoaded",()=>{
     const footer = document.querySelector(".footer")

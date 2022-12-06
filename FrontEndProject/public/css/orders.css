@@ -24,10 +24,10 @@
     background-color: #198754;
     border-width: 0px;
     border-radius: 3px;
-    color:white;
+    color:white!important;
     line-height:25px;
     width: 90px;
-    padding: 2px 5px 5px 5px;
+    padding: 2px 5px 5px 5px!important;
 }
 .place-button:hover{
     background-color: #198704;

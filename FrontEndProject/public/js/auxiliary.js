@@ -67,3 +67,18 @@ export async function deleteDish(element,shouldDecrease){
         }
     })
 }
+export async function acceptOrder(setAddress, dateTime){
+    let jwt = tokenRegexp.exec(document.cookie)[1];
+    console.log(setAddress,dateTime)
+    await fetch("https://food-delivery.kreosoft.ru/api/order",{
+        method: 'POST',
+        headers:{
+            'Content-Type': 'application/json',
+            Authorization: "Bearer " + jwt
+        },
+        body: JSON.stringify({
+            deliveryTime: dateTime,
+            address: setAddress
+        })
+    })
+}

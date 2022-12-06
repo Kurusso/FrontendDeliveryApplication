@@ -55,7 +55,9 @@ app.get('/cart',(req,res)=>{
 app.get('/orders',(req,res)=>{
     res.render('orders')
 })
-
+app.get('/purchase',(req,res)=>{
+    res.render('purchase')
+})
 
 app.listen(port,()=>{
     console.info(__dirname)

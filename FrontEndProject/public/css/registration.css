@@ -19,7 +19,7 @@ body {
 
 }
 
-.square > .data-field {
+ .data-field {
     margin-top:5px;
     margin-bottom:15px;
     right: 1%;

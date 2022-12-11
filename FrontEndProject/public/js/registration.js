@@ -62,7 +62,7 @@ async function register() {
         await registerUser(data).then(res => {
             return res.json();
         }).then(json => registerJSON = json)
-        console.log(registerJSON)
+
         if(registerJSON && "DuplicateUserName" in registerJSON){
             document.querySelector(".email").style.borderColor="red"
             document.querySelector(".error-duplicate").style.display=""

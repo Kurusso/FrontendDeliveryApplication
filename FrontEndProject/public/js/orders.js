@@ -9,10 +9,10 @@ async function renderOrders(){
     }
     try {
         await fetchOrders().then(res=> res.json()).then(data=>jsonData=data)
-        console.log(jsonData)
+
     }
     catch (err){
-        console.log(err)
+
     }
     let clone=[]
     let i=0;

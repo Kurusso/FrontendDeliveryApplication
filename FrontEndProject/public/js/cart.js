@@ -6,10 +6,10 @@ async function render(){
     var responseData;
     try {
         await fetchBasket().then(res=> res.json()).then(data=>responseData=data);
-        console.log(responseData)
+
     }
     catch (err){
-        console.log(err)
+
     }
     let clone=[]
     let i=0;

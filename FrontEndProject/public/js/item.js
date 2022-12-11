@@ -8,13 +8,14 @@ async function render(){
     }
     var urlForFetch=`https://food-delivery.kreosoft.ru/api/dish/${elemId}`;
     pageJson= await fetchElem(urlForFetch);
-    console.log(pageJson)
     document.querySelector(".dish-category").innerHTML+=pageJson.category;
     document.querySelector(".dish-name").innerHTML=pageJson.name;
     document.querySelector(".dish-name").innerHTML=pageJson.name;
     document.querySelector(".dish-cost").innerHTML+=pageJson.price+" руб/штука";
     document.querySelector(".dish-description").innerHTML=pageJson.description
-    document.querySelector(".star-rating").innerHTML=pageJson.rating
+    const starPercentage=(pageJson.rating/10) * 100;
+    const starPercantageRounded= `${starPercentage}%`;
+    document.querySelector(".stars-inner").style.width=starPercantageRounded;
     document.querySelector(".image-size").src=pageJson.image
     if(pageJson.vegetarian==false){
         document.querySelector(".isVegetarian").innerHTML="Не вегетерианское";

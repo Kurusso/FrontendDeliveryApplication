@@ -1,15 +1,34 @@
 import {fetchBasket} from "./auxiliary.js";
 import  {checkIfAuthorized} from "./auxiliary.js";
 import {acceptOrder} from "./auxiliary.js";
+async function checkFields(date, address){
+    let fields=true;
+    let dateInFormat=new Date()
+    dateInFormat.setTime(dateInFormat.getTime() + (60*60*1000))
+    if(date==""){
+        document.querySelector(".error-empty-time").style.display=""
+        document.querySelector(".data-field-time").style.borderColor="red"
+        fields=false;
+    }
+    else if(dateInFormat>= new Date(date)){
+        document.querySelector(".error-wrong-time").style.display=""
+        document.querySelector(".data-field-time").style.borderColor="red"
+        fields=false;
+    }
+    if(address==""){
+        document.querySelector(".error-empty-address").style.display=""
+        document.querySelector(".data-field-address").style.borderColor="red"
+        fields=false;
+    }
 
+    return fields
+}
 async function renderPurchase(){
     var responseData;
     try {
         await fetchBasket().then(res=> res.json()).then(data=>responseData=data);
-        console.log(responseData)
     }
     catch (err){
-        console.log(err)
     }
     let orderCost=0;
     let clone=[]
@@ -44,6 +63,18 @@ document.addEventListener("DOMContentLoaded",()=>{
     document.querySelector(".accept-button").addEventListener("click",async ()=>{
         const address=document.querySelector(".data-field-address").value
         let date=document.querySelector(".data-field-time").value;
-      await acceptOrder(address,date).then(()=>window.location.href="http://localhost:3000/orders")
+        let dateInFormat=new Date()
+        dateInFormat.setTime(dateInFormat.getTime() + (60*60*1000))
+
+       if(await checkFields(date,address)){
+           await acceptOrder(address,date).then(()=>window.location.href="http://localhost:3000/orders")
+       }
+    })
+    document.querySelectorAll(".data-field").forEach((element)=>{
+        element.addEventListener("click",(event)=>{
+            event.target.placeholder=""
+            event.target.style.borderColor=""
+            event.target.parentElement.querySelectorAll(".error").forEach(elem=>elem.style.display="none")
+        })
     })
     })

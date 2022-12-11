@@ -17,7 +17,7 @@ async function renderOrder(){
         elemId=idRegexp.exec(url)[1];
     }
    await fetchOrder(elemId).then(res=>res.json()).then(data=>orderJSON=data);
-    console.log(orderJSON)
+
     document.querySelector(".order-date").innerHTML=orderJSON.orderTime.slice(8,10) + "." +
         orderJSON.orderTime.slice(5,7) + "." + orderJSON.orderTime.slice(0,4) + " " + orderJSON.orderTime.slice(11,16);
     document.querySelector(".delivery-date").innerHTML=orderJSON.deliveryTime.slice(8,10) + "." +

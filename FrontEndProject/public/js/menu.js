@@ -119,7 +119,9 @@ async function renderPage(){
         clone[i].style.display="";
         clone[i].querySelector(".image-size").src=element.image
         clone[i].querySelector(".dish-name").innerHTML=element.name
-        clone[i].querySelector(".star-rating").innerHTML=element.rating
+        const starPercentage=(element.rating/10) * 100;
+        const starPercantageRounded= `${starPercentage}%`;
+        clone[i].querySelector(".stars-inner").style.width=starPercantageRounded;
         clone[i].querySelector(".category-name").innerHTML+=element.category
         clone[i].querySelector(".dish-text").innerHTML=element.description
         clone[i].querySelector(".dish-cost").innerHTML+=element.price
@@ -210,7 +212,6 @@ document.addEventListener("DOMContentLoaded", () =>{
     })
     document.querySelector(".filter-button").addEventListener("click", ()=>{
         changeLink();
-       console.log(window.location.href)
     });
 
 

@@ -29,7 +29,6 @@ async function checkFields(data){
 async function renderProfile(){
     var profileJSON;
     await checkIfAuthorized().then(res=>res.json()).then(json=>profileJSON=json);
-    console.log(profileJSON)
     document.querySelector(".name").value=profileJSON.fullName
     document.querySelector(".email").innerHTML=profileJSON.email
     document.querySelector(".date").value=profileJSON.birthDate.slice(0,10)

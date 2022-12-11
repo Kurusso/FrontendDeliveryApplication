@@ -35,7 +35,6 @@ async function login() {
             document.querySelector(".error-login").style.display=""
         }
     }
-    console.log(loginJSON)
 
 
 }

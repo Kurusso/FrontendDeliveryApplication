@@ -27,10 +27,13 @@
      <div class="col address">
          <div class="naming-string-2">Адрес</div>
          <input type="text" class="data-field-address data-field">
+         <div class="prompt-text error-empty-address error" style="display: none; color: red">Заполните это поле!</div>
      </div>
     <div class="col delivery-time">
         <div class="naming-string-2">Время доставки</div>
         <input type="datetime-local" class="data-field-time data-field">
+        <div class="prompt-text error-empty-time error" style="display: none; color: red">Заполните это поле!</div>
+        <div class="prompt-text error-wrong-time error" style="display: none; color: red">Установите дату доставки, отличающуюся от текущего времени более чем на час!</div>
     </div>
 </div>
     <div>Список блюд:</div>

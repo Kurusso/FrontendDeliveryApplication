@@ -5,7 +5,7 @@
     <title>Title</title>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/css/registration.css">
-    <script type="text/javascript" src="js/registration.js"></script>
+    <script type="module" src="js/registration.js"></script>
 
 </head>
 <body>
@@ -13,31 +13,47 @@
 <div class="square mx-auto">
     <h1 id="title">Регистрация нового пользователя</h1>
 
-    <div>ФИО</div>
-    <input class="data-field" type="text" name="name" required="required">
+    <div>ФИО
+        <input class="data-field name" type="text" name="name" required="required">
+        <div class="prompt-text error-empty-name error" style="display: none; color: red">Заполните это поле!</div>
+    </div>
 
-    <div>Пол</div>
+    <div>Пол
     <select class="data-field" type="text" name="name" required="required">
         <option value="Male">мужчина</option>
         <option value="Female">женщина</option>
     </select>
+    </div>
 
-    <div>Телефон</div>
-    <input class="data-field" type="tel" name="name" required="required" placeholder="+7 (xxx) xxx-xx-xx">
+    <div>Телефон
+        <input class="data-field no-arrow phone" type="number" name="name" required="required" placeholder="+7 (XXX) XXX-XX-XX">
+        <div class="prompt-text error-empty-number error" style="display: none; color: red">Введите нормальный номер!</div>
+    </div>
 
-    <div>Адрес</div>
+    <div>Адрес
     <input class="data-field" type="text" name="name" required="required">
+    </div>
 
-    <div>Дата</div>
-    <input class="data-field" type="date" name="name" required="required">
+    <div>День рождения
+        <input class="data-field date" type="date" name="name" required="required">
+        <div class="prompt-text error-empty-date error" style="display: none; color: red">Заполните это поле!</div>
+        <div class="prompt-text error-date error" style="display: none; color: red">Дата вашего рождения должна быть больше чем сегодня!</div>
+    </div>
 
-    <div>Email</div>
-    <input class="data-field" type="email" name="name" required="required">
-    <div class="prompt-text">Email будет использоваться для входа в систему</div>
+    <div>Email
+        <input class="data-field email" type="email" name="name" required="required">
+        <div class="prompt-text error-email-format error" style="display: none; color: red">Введите нормальный email!</div>
+        <div class="prompt-text error-empty-email error" style="display: none; color: red">Заполните это поле!</div>
+        <div class="prompt-text error-duplicate error" style="display: none; color: red">Эта почта уже занята!</div>
+        <div class="prompt-text">Email будет использоваться для входа в систему</div>
+    </div>
 
-    <div>Пароль</div>
-    <input class="data-field" type="password" name="name" required="required">
-
+    <div>Пароль
+        <input class="data-field pass" type="password" name="name" required="required">
+        <div class="prompt-text error-empty-pass-1 error" style="display: none; color: red">Минимальная длина пароля 6 символов!</div>
+        <div class="prompt-text error-empty-pass-2 error" style="display: none; color: red">Заполните это поле!</div>
+        <div class="prompt-text error-digit error" style="display: none; color: red">Пароль должен содержать как минимум одну цифру!</div>
+    </div>
     <button class="register-button button"> Зарегистрироваться</button>
 </div>
 <div class="flexspace"></div>

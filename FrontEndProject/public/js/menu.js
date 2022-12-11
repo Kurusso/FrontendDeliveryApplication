@@ -106,7 +106,6 @@ async function renderPage(){
     catch (err){
         logedIn=false
     }
-    console.log(responseData)
     var urlForFetch= await urlConstructor();
     pageJson = await FetchMenu(urlForFetch);
    let clone = []
@@ -125,6 +124,9 @@ async function renderPage(){
         clone[i].querySelector(".dish-text").innerHTML=element.description
         clone[i].querySelector(".dish-cost").innerHTML+=element.price
         clone[i].querySelector(".dish-id").innerHTML=element.id
+        if(element.vegetarian){
+            clone[i].querySelector(".vegetarian").style.display=""
+        }
         document.querySelector(".dish-list").appendChild(clone[i]);
         clone[i].querySelector(".padding-box").addEventListener("click", ()=>{
             window.location.href=`http://localhost:3000/item/${element.id}`

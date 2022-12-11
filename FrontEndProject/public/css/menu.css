@@ -1,5 +1,5 @@
 .dish-box{
-
+    position: relative;
     display: inline-block;
     width:250px;
     height:400px ;
@@ -190,4 +190,11 @@ input:checked + .slider:before {
 }
 .input-number{
     border-width: 0px;
+}
+.vegetarian{
+    position: absolute;
+    top:110px;
+    right:5px;
+    height: 25px;
+
 }

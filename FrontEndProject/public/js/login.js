@@ -1,24 +1,42 @@
+import {loginUser} from "./auxiliary.js";
+const mailRegexp = new RegExp(`[A-z0-9]+@[A-z0-9]+`)
+async function checkFields(data){
+    let fields=true;
+    if(data[0].value==""){
+        document.querySelector(".error-empty-email").style.display=""
+        document.querySelector(".email").style.borderColor="red"
+        fields=false;
+    }
+   else if(!mailRegexp.test(data[0].value)){
+        document.querySelector(".error-email-format").style.display=""
+        document.querySelector(".email").style.borderColor="red"
+        fields=false;
+    }
+    if(data[1].value==""){
+        document.querySelector(".error-empty-pass").style.display=""
+        document.querySelector(".pass").style.borderColor="red"
+        fields=false;
+    }
+
+    return fields
+}
 async function login() {
+    var loginJSON;
     let data = document.querySelectorAll(".data-field");
-    await fetch("https://food-delivery.kreosoft.ru/api/account/login", {
-        method: 'POST',
-        body: JSON.stringify(
-            {
-                "email": data[0].value,
-                "password": data[1].value,
-                }),
-        headers: new Headers({
-            'Content-Type': 'application/json'
-        }),
-    }).then((response) => {
-        if (response.status == 200) return response.json();
-        else throw response;
-    }).then((json) => {
-        console.log(json.token)
-        document.cookie = `token=${json.token}`;
-    }).then(()=>{
-        window.location.href="http://localhost:3000"
-    });;
+    if(await checkFields(data)) {
+        await loginUser(data).then(res => {
+            return res.json();
+        }).then(json => loginJSON = json)
+        if (loginJSON && "token" in loginJSON) {
+            document.cookie = `token=${loginJSON.token}`;
+            window.location.href = "http://localhost:3000"
+        }
+        else {
+            document.querySelector(".error-login").style.display=""
+        }
+    }
+    console.log(loginJSON)
+
 
 }
 
@@ -28,5 +46,11 @@ document.addEventListener("DOMContentLoaded", () =>{
     document.querySelector(".register-button").addEventListener("click", ()=>{
          login()
     });
-
+    document.querySelectorAll(".data-field").forEach((element)=>{
+        element.addEventListener("click",(event)=>{
+            event.target.placeholder=""
+            event.target.style.borderColor=""
+            event.target.parentElement.querySelectorAll(".error").forEach((elem)=>elem.style.display="none")
+        })
+    })
 });

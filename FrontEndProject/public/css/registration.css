@@ -12,7 +12,8 @@ body {
     box-shadow: 0 14px 28px rgba(0,0,0,0.12), 0 10px 10px rgba(0,0,0,0.10);
     padding: 10px 1%;
     box-sizing: border-box;
-    min-width:60%
+    width:60%;
+    min-width: 500px;
 }
 .flexspace {
     flex: 1 0 auto;
@@ -20,7 +21,6 @@ body {
 }
 
  .data-field {
-    margin-top:5px;
     margin-bottom:15px;
     right: 1%;
     padding:4px;
@@ -33,7 +33,7 @@ body {
     height:30px;
     box-sizing:border-box;
 }
-.square > .prompt-text{
+.prompt-text{
     position:relative;
     top:-10px;
     font-size:10px;
@@ -51,4 +51,22 @@ body {
 }
 .button{
     border-width: 0px;
+}
+.row-margin{
+    margin-bottom: 15px;
+}
+.left{
+    float: right;
+}
+
+.no-arrow {
+    -moz-appearance: textfield;
+}
+.no-arrow::-webkit-inner-spin-button {
+    display: none;
+}
+.no-arrow::-webkit-outer-spin-button,
+.no-arrow::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }

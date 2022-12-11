@@ -41,10 +41,9 @@ document.addEventListener("DOMContentLoaded",()=>{
     const footer = document.querySelector(".footer")
     fetch("/html/footer.html").then(res=>res.text()).then(data2=>footer.innerHTML=data2)
     renderPurchase();
-    document.querySelector(".accept-button").addEventListener("click",()=>{
+    document.querySelector(".accept-button").addEventListener("click",async ()=>{
         const address=document.querySelector(".data-field-address").value
         let date=document.querySelector(".data-field-time").value;
-        acceptOrder(address,date)
-        window.location.href="http://localhost:3000/orders"
+      await acceptOrder(address,date).then(()=>window.location.href="http://localhost:3000/orders")
     })
     })

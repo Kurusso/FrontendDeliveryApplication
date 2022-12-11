@@ -1,34 +1,10 @@
-// const http = require("http")
-// const  fs = require('fs')
-// const path = require('path')
-//
-// const server = http.createServer((req,res)=>{
-//
-//
-// if(req.url === '/') {
-//     fs.readFile(path.join('FrontEndProject', 'navbar', 'navbar.html'), (err, data) => {
-//         if (err) {
-//             throw  err;
-//         }
-//         res.writeHead(200, {
-//             'Content-Type': 'text/html'
-//         })
-//         res.write(data)
-//         res.end();
-//     })
-// }
-//
-//     })
-// server.listen(3333,()=>{
-//     console.log('server started')
-// })
-
 
 const express = require('express')
 const app = express()
 const port = 3000
 const  fs = require('fs')
 const path = require('path')
+
 
 const createPath = (page) => path.resolve(__dirname,'public', 'html', `${page}.html`)
 let basePath=''
@@ -58,10 +34,12 @@ app.get('/orders',(req,res)=>{
 app.get('/purchase',(req,res)=>{
     res.render('purchase')
 })
-
+app.get('/profile' ,(req,res)=>{
+    res.render('profile')
+})
+app.get(new RegExp('^/order(/[A-z0-9-]+)$'),(req,res) =>{
+    res.render('order')
+})
 app.listen(port,()=>{
     console.info(__dirname)
 })
-
-// ?(categories=(WOK|Soup|Pizza|Dessert|Drink)&?)*(vegitarian=(true|false)&?)?(sorting=(NameAsc|NameDesc|PriceAsc|PriceDesc|RatingAsc|RatingDesc)&?)?(page=[1-9]+[0-9]*)?
-//^/[?](categories=(WOK|Soup|Pizza|Dessert|Drink)&?)*(vegetarian=(true|false)&?)?(sorting=(NameAsc|NameDesc|PriceAsc|PriceDesc|RatingAsc|RatingDesc)&?)?(page=[1-9]+[0-9]*)?$

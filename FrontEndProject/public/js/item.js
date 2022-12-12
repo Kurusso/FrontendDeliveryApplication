@@ -1,3 +1,5 @@
+import {checkRatingPossibility, setRating} from "./auxiliary.js";
+
 const idRegexp=new RegExp("item/([A-z0-9-]*)");
 let pageJson;
 async function render(){
@@ -23,6 +25,26 @@ async function render(){
     else{
         document.querySelector(".isVegetarian").innerHTML="Вегетерианское";
     }
+    await checkRatingPossibility(elemId).then(res=>{
+        if(res.status==200) return res.json();}).
+    then(json=>pageJson=json)
+
+    if(pageJson==true) {
+        let userRating;
+        let previousWidth = document.querySelector(".stars-inner").style.width;
+        document.querySelector(".stars-outer").addEventListener("mousemove", (event) => {
+            event.target.parentElement.querySelector(".stars-inner").style.width = `${Math.round(event.offsetX / 18) * 18}px`
+             userRating = `${Math.round(event.offsetX / 18) * 18}px`
+        })
+        document.querySelector(".stars-outer").addEventListener("mouseleave",(event)=>{
+            event.target.parentElement.querySelector(".stars-inner").style.width = previousWidth
+        })
+        document.querySelector(".stars-outer").addEventListener("click", async () => {
+            previousWidth=userRating
+            await setRating(elemId, userRating.slice(0,userRating.length-2) / 18);
+        })
+
+    }
 }
 async function fetchElem(urlForFetch){
     var response = await fetch(urlForFetch);
@@ -32,4 +54,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const footer = document.querySelector(".footer")
     fetch("/html/footer.html").then(res => res.text()).then(data2 => footer.innerHTML = data2)
     render();
+
+
 })

@@ -155,3 +155,20 @@ export async function loginUser(data){
         }),
     }) );
 }
+export  async function checkRatingPossibility(id){
+    let jwt = tokenRegexp.exec(document.cookie)[1];
+    return await Promise.resolve( fetch(`https://food-delivery.kreosoft.ru/api/dish/${id}/rating/check`,{
+        method: 'GET',
+        headers:{
+            Authorization: "Bearer " + jwt
+        }}));
+}
+export async function setRating(id,rating){
+    let jwt = tokenRegexp.exec(document.cookie)[1];
+    await fetch(`https://food-delivery.kreosoft.ru/api/dish/${id}/rating?ratingScore=${rating}`,{
+        method: 'POST',
+        headers:{
+            Authorization: "Bearer " + jwt
+        }
+    })
+}

@@ -24,6 +24,7 @@ async function renderOrder(){
         orderJSON.deliveryTime.slice(5,7) + "." + orderJSON.deliveryTime.slice(0,4) + " " + orderJSON.deliveryTime.slice(11,16);
     document.querySelector(".order-address").innerHTML=orderJSON.address
     document.querySelector(".order-status").innerHTML=parseStatus(orderJSON.status)
+    document.querySelector(".date-of-order").innerHTML=orderJSON.orderTime.slice(8,10) + "." + orderJSON.orderTime.slice(5,7) + "." + orderJSON.orderTime.slice(0,4);
     let orderCost=0;
     let clone=[]
     let i=0;

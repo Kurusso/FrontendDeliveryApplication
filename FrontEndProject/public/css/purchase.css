@@ -1,0 +1,80 @@
+.square-purchase{
+    position: relative;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.12), 0 10px 10px rgba(0,0,0,0.10);
+    padding: 10px 1%;
+    box-sizing: border-box;
+    width:63%;
+    min-width:400px;
+}
+.phone , .email{
+    background-color: lightgrey;
+    border-radius: 5px;
+    padding: 5px 0px;
+    margin: 0px 5px;
+}
+.naming-string{
+    font-size: 12px;
+}
+.line-container{
+    margin-bottom: 15px;
+}
+.naming-string-2{
+    font-size: 14px;
+    margin-bottom: 3px;
+}
+.image-size{
+    height: 90%;
+    width: 160px;
+    align-items: center;
+    float: left;
+    border-radius: 35px;
+}
+.cart-dish-box{
+    position: relative;
+    width: 100%;
+    border-width: 1px;
+    border-color: lightgrey;
+    border-style: solid;
+    min-height:90px ;
+    padding-left: 10px;
+}
+.dish-name{
+    font-size: 18px;
+    font-weight: bold;
+    padding-bottom: 4px;
+}
+.dish-cost{
+    padding-bottom: 4px;
+}
+.container{
+    display: flex;
+    float: left;
+    height: 90px;
+    width: 160px!important;
+    align-items: center;
+    margin-left: 0px!important;
+    margin-right: 20px!important;
+}
+.col-md-auto{
+    margin-left: 5px!important;
+}
+.full-cost{
+    position: absolute;
+    bottom: 10px;
+    right:40px;
+}
+.dish-list{
+    margin-bottom: 20px;
+}
+.accept-button{
+    background-color: #198754;
+    border-width: 0px;
+    border-radius: 3px;
+    color:white!important;
+    line-height:25px;
+    width: 160px;
+    padding: 2px 5px 5px 5px!important;
+}
+.accept-button:hover{
+    background-color: #198704;
+}

@@ -1,0 +1,25 @@
+.nav-item {
+    text-align: center;
+}
+
+.nav-item a:hover {
+    background-color: lightgray;
+}
+
+nav {
+    background-color: white;
+    border-color: lightgray;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+}
+ .right{
+    margin:10px;
+}
+ .dish-amount{
+     margin-left: 5px;
+     padding: 2px 10px;
+     background-color: #198754;
+     border-radius: 5px;
+     color: white;
+     text-align: center;
+ }

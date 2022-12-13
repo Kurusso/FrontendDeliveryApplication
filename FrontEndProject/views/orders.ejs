@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Заказы</title>
+    <link rel="stylesheet" type="text/css" href="../css/registration.css">
+    <link rel="stylesheet" type="text/css" href="../css/orders.css">
+    <script type="module" src="js/orders.js"></script>
+
+</head>
+<body>
+<%- include('../views/navbar.ejs')%>
+<div class="orders-square mx-auto">
+    <div class="inside-square" style="display: none">
+        <div>В корзине есть блюда, можно оформить заказ</div>
+         <a class="nav-link active place-button" href="http://localhost:3000/purchase">Оформить</a>
+    </div>
+    <h1>Последние заказы</h1>
+    <div class="orders-list">
+        <div class="order-box mx-auto "  style="display: none">
+            <div class="clickable-order-box">
+                <div class="orderDate">Заказ от <span class="date">20.04.2022</span></div>
+                <div>Статус заказа - <span class="status">Доставлен</span></div>
+                <div class="delivered" >Доставлен: <span class="date2">20.04.2022</span> <span class="time">18:25</span></div>
+                <div class="unDelivered" style="display: none">Доставка ожидается <span class="date3"></span> в <span class="time2">18:25</span></div>
+            </div>
+            <button class="accept-button" style="display: none">Подтвердить доставку</button>
+            <div class="cost-container"><span style="font-weight: bold">Стоимость заказа: </span><span class="dish-cost">1200</span><span> руб.</span></div>
+        </div>
+
+    </div>
+</div>
+<div class="flexspace"></div>
+<div class="footer"></div>
+</body>
+</html>

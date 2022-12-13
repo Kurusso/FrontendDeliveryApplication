@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Заказ</title>
+    <script src="/js/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/order.css">
+    <script type="module" src="../js/order.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/registration.css">
+</head>
+<body>
+<%- include('../views/navbar.ejs')%>
+<div class="order-square mx-auto">
+    <div class="card">
+        <div class="card-header">
+            <h3>Заказ от <span class="date-of-order">0000</span></h3>
+        </div>
+        <div class="card-body">
+            <div>Дата заказа: <span class="order-date">tete</span></div>
+            <div>Дата доставки: <span class="delivery-date">tete</span></div>
+            <div>Адрес доставки: <span class="order-address">tete</span></div>
+            <div>Статус заказа: <span class="order-status">tete</span></div>
+
+                <div>Список блюд:</div>
+                <div class="dish-list">
+                    <div class="cart-dish-box mx-auto "style="display: none" >
+                        <div class="row">
+
+                            <div class="container  col-md-auto">
+                                <img class="image-size align-bottom" src="https://s1.1zoom.ru/big3/984/Canada_Parks_Lake_Mountains_Forests_Scenery_Rocky_567540_3840x2400.jpg">
+                            </div>
+
+                            <div class="block col-md-auto">
+                                <div class="dish-name">textfefefebrbr</div>
+                                <div class="dish-cost">Цена: </div>
+                                <div class="dish-order-amount">Количество: </div>
+                            </div>
+                        </div>
+                        <div class="full-cost"><span style="font-weight: bold">Стоимость: </span><span class="full-dish-price">1000</span> <span> руб</span></div>
+                    </div>
+
+                </div>
+                <div class="order-cost"><span style="font-weight: bold">Стоимость заказа: </span><span class="full-order-price">1000</span> <span> руб.</span></div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<div class="flexspace">  </div>
+<div class="footer"></div>
+</body>
+</html>

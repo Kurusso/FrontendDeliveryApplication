@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Авторизация</title>
+    <script src="/js/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/registration.css">
+    <script type="module" src="/js/login.js"></script>
+
+</head>
+<body>
+<%- include('../views/navbar.ejs')%>
+<div class="square mx-auto">
+    <h1 id="title">Авторизация</h1>
+    <div>Email
+        <input class="data-field email" type="email" name="name" required="required">
+        <div class="prompt-text error-empty-email error" style="display: none; color: red">Заполните это поле!</div>
+        <div class="prompt-text error-email-format error" style="display: none; color: red">Введите нормальный email!</div>
+    </div>
+    <div>Пароль
+        <input class="data-field pass" type="password" name="name" required="required">
+        <div class="prompt-text error-empty-pass error" style="display: none; color: red">Заполните это поле!</div>
+    </div>
+    <div class="prompt-text error-login" style="display: none; color: red">Неверный логин или пароль!</div>
+    <button class="register-button button"> Войти</button>
+</div>
+<div class="flexspace"></div>
+<div class="footer"></div>
+</body>
+</html>

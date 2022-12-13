@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Профиль</title>
+
+
+    <link rel="stylesheet" type="text/css" href="../css/registration.css">
+    <link rel="stylesheet" type="text/css" href="../css/profile.css">
+    <script type="module" src="/js/profile.js"></script>
+
+</head>
+<body>
+<%- include('../views/navbar.ejs')%>
+<div class="square mx-auto">
+    <h1 id="title">Профиль</h1>
+    <div class="row ">
+    <div class="col-2">ФИО</div>
+        <div class="col-10">
+        <input class="data-field name data" type="text" name="name" required="required">
+        <div class="prompt-text error-empty-name error" style="display: none; color: red">Заполните это поле!</div>
+        </div>
+    </div>
+
+    <div class="row ">
+    <div class="col-2 row-margin ">Email</div>
+        <div class="col-10">
+    <div class="email data">fefe@gmail.com</div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">День рождения </div>
+        <div class="col-10">
+            <input class="data-field date data" type="date" name="name" required="required">
+            <div class="prompt-text error-empty-date error" style="display: none; color: red">Заполните это поле!</div>
+            <div class="prompt-text error-date error" style="display: none; color: red">Дата вашего рождения должна быть больше чем сегодня!</div>
+        </div>
+    </div>
+
+    <div class="row row-margin">
+    <div class="col-2">Пол</div>
+        <div class="col-10">
+            <div class="gender data data">мужчина</div>
+        </div>
+    </div>
+
+    <div class="row">
+    <div class="col-2">Адрес</div>
+        <div class="col-10">
+    <input class="data-field address data" type="text" name="name" required="required">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">Телефон</div>
+        <div class="col-10">
+            <input class="data-field number data no-arrow  phone" type="number" name="name" required="required" placeholder="+7 (XXX) XXX-XX-XX">
+            <div class="prompt-text error-empty-number error" style="display: none; color: red">Введите нормальный номер!</div>
+        </div>
+    </div>
+    <div class=" update" style="color: forestgreen; display: none">Данные обновлены</div>
+    <button class="register-button button left"> Изменить</button>
+</div>
+<div class="flexspace"></div>
+<div class="footer"></div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+.item-square {
+    position: relative;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.12), 0 10px 10px rgba(0,0,0,0.10);
+    padding: 10px 1%;
+    box-sizing: border-box;
+    width:85%;
+    min-width: 250px;
+}
+.item-inner-square{
+    position: relative;
+    border-width: 1px;
+    border-style: solid;
+    border-color: lightgrey;
+    padding: 10px 1%;
+    box-sizing: border-box;
+    min-width:85%
+}
+.image-size{
+    max-width: 35%;
+}
+.stars-outer{
+    position: relative;
+    display: inline-block;
+}
+.stars-inner{
+    position: absolute;
+    top:0;
+    left: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+}
+.stars-outer::before{
+
+    content: "\f005 \f005 \f005 \f005 \f005 \f005 \f005 \f005 \f005 \f005";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    color: black;
+
+}
+.stars-inner::before{
+    content: "\f005 \f005 \f005 \f005 \f005 \f005 \f005 \f005 \f005 \f005";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    color: #f8ce0b;
+}
+.star-box{
+    width: 30%;
+    min-width: 200px;
+    text-align: center;
+    border-width: 1px!important;
+    position: relative;
+    border-style: solid;
+    border-color: lightgrey;
+}

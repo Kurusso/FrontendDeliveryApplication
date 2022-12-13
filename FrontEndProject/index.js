@@ -40,6 +40,9 @@ app.get('/profile' ,(req,res)=>{
 app.get(new RegExp('^/order(/[A-z0-9-]+)$'),(req,res) =>{
     res.render('order')
 })
+app.get('/error',(req,res)=>{
+    res.render('error')
+})
 app.listen(port,()=>{
     console.info(__dirname)
 })

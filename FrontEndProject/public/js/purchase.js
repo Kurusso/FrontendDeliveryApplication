@@ -25,11 +25,12 @@ async function checkFields(date, address){
 }
 async function renderPurchase(){
     var responseData;
-    try {
-        await fetchBasket().then(res=> res.json()).then(data=>responseData=data);
-    }
-    catch (err){
-    }
+        await fetchBasket().then(res=> {
+            if(res.status==200) return res.json()
+        }).then(data=>responseData=data);
+        if(responseData==undefined || responseData.length==0){
+            window.location.href="http://localhost:3000/error"
+        }
     let orderCost=0;
     let clone=[]
     let i=0;

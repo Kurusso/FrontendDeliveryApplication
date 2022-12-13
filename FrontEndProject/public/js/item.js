@@ -10,8 +10,12 @@ async function render(){
     }
     var urlForFetch=`https://food-delivery.kreosoft.ru/api/dish/${elemId}`;
     pageJson= await fetchElem(urlForFetch);
+    if(!pageJson){
+        window.location.href="http://localhost:3000/error"
+    }
     document.querySelector(".dish-category").innerHTML+=pageJson.category;
     document.querySelector(".dish-name").innerHTML=pageJson.name;
+    document.querySelector("title").innerHTML=pageJson.name
     document.querySelector(".dish-name").innerHTML=pageJson.name;
     document.querySelector(".dish-cost").innerHTML+=pageJson.price+" руб/штука";
     document.querySelector(".dish-description").innerHTML=pageJson.description
@@ -48,7 +52,8 @@ async function render(){
 }
 async function fetchElem(urlForFetch){
     var response = await fetch(urlForFetch);
-    return response.json()
+    if(response.status==200) return response.json()
+    return false
 }
 document.addEventListener("DOMContentLoaded", () => {
     const footer = document.querySelector(".footer")

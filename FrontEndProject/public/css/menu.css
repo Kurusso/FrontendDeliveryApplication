@@ -68,6 +68,9 @@
     display: flex;
     align-items: center;
 }
+.dish{
+    height: 75px;
+}
 .switch {
     margin-top: 0%;
     position: relative;
@@ -78,10 +81,10 @@
     border-radius: 60px;
 }
 
-/* Hide default HTML checkbox */
+
 .switch input {display:none;}
 
-/* The slider */
+
 .slider {
     position: absolute;
     cursor: pointer;
@@ -120,7 +123,7 @@ input:checked + .slider:before {
     transform: translateX(10px);
 }
 
-/* Rounded sliders */
+
 .slider.round {
     border-radius: 34px;
 }

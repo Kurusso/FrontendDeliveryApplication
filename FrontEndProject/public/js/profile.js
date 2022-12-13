@@ -28,7 +28,12 @@ async function checkFields(data){
 }
 async function renderProfile(){
     var profileJSON;
-    await checkIfAuthorized().then(res=>res.json()).then(json=>profileJSON=json);
+    await checkIfAuthorized().then(res=> {
+        if(res.status==200) return res.json()
+    }).then(json=>profileJSON=json);
+    if(profileJSON==undefined){
+        window.location.href="http://localhost:3000/error"
+    }
     document.querySelector(".name").value=profileJSON.fullName
     document.querySelector(".email").innerHTML=profileJSON.email
     document.querySelector(".date").value=profileJSON.birthDate.slice(0,10)

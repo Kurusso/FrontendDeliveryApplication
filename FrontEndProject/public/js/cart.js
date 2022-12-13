@@ -4,12 +4,11 @@ import {deleteDish} from "./auxiliary.js";
 
 async function render(){
     var responseData;
-    try {
-        await fetchBasket().then(res=> res.json()).then(data=>responseData=data);
-
-    }
-    catch (err){
-
+        await fetchBasket().then(res=> {
+            if(res.status==200) return res.json()
+        }).then(data=>responseData=data);
+    if(responseData==undefined){
+        window.location.href="http://localhost:3000/error"
     }
     let clone=[]
     let i=0;
@@ -27,7 +26,7 @@ async function render(){
         clone[i].querySelector(".dish-cost").innerHTML+=element.price
         clone[i].querySelector(".input-number").value=element.amount
         document.querySelector(".cart-dish-list").appendChild(clone[i]);
-        clone[i].querySelector(".quantity-left-minus").addEventListener("click",(event)=>{    //TODO: auxiliary
+        clone[i].querySelector(".quantity-left-minus").addEventListener("click",(event)=>{
             let elem = event.target;
             if(elem.parentElement.nextSibling.nextSibling.value>1) {
                 elem.parentElement.nextSibling.nextSibling.value--;

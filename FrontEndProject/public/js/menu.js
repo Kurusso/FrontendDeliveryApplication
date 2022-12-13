@@ -202,7 +202,7 @@ document.addEventListener("DOMContentLoaded", () =>{
     isVegetarian=false;
     renderPage();
     if(!window.location.href.match(new RegExp(`0/([?](categories=(WOK|Soup|Pizza|Dessert|Drink)&?)*(vegetarian=(true|false)&?)?(sorting=(NameAsc|NameDesc|PriceAsc|PriceDesc|RatingAsc|RatingDesc)&?)?(page=[1-9]+[0-9]*)?)?$`))){
-        window.location.href="https://e7.pngegg.com/pngimages/60/588/png-clipart-oops-illustration-green-stunned-the-explosion-stickers-text-logo.png"
+        window.location.href="http://localhost:3000/"
     }
     let firstPageElement = document.querySelector(".page-link-1");
     let secondPageElement = document.querySelector(".page-link-2");

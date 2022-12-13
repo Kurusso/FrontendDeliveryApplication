@@ -3,7 +3,12 @@ import {fetchOrders} from "./auxiliary.js";
 
 async function renderOrders(){
     let jsonData;
-    await fetchBasket().then(res=> res.json()).then(data=>jsonData=data)
+    await fetchBasket().then(res=> {
+        if(res.status==200) return res.json()
+    }).then(data=>jsonData=data)
+    if(jsonData==undefined){
+        window.location.href="http://localhost:3000/error"
+    }
     if(jsonData.length!=0){
         document.querySelector(".inside-square").style.display=""
     }
@@ -12,7 +17,7 @@ async function renderOrders(){
 
     }
     catch (err){
-
+        window.location.href="http://localhost:3000/error"
     }
     let clone=[]
     let i=0;

@@ -172,3 +172,11 @@ export async function setRating(id,rating){
         }
     })
 }
+export  async function fetchItem(id){
+
+    return await Promise.resolve( fetch(`https://food-delivery.kreosoft.ru/api/dish/${id}/rating/check`,{
+        method: 'GET',
+        headers:{
+            Authorization: "Bearer " + jwt
+        }}));
+}
